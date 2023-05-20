@@ -22,11 +22,15 @@ SRC_DIR		= ./src
 SRCS		=	main.c \
 				movements.c \
 				map_check.c \
-				map_way_and_exit_check.c \
+				map_way_finder.c \
 				key_handling.c \
 				events.c \
 				utils.c \
-				create_map.c
+				create_map.c \
+				map_check_utils.c \
+				map_check_utils_2.c \
+				map_exit_finder.c \
+				check_map_valid_path.c
 
 GNL 		=get_next_line.a
 PRINTF		=libftprintf.a

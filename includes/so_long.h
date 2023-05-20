@@ -88,6 +88,25 @@ int player_reached_collectible (t_game *game);
 int player_reached_exit (t_game *game);
 int check_number_of_args(int ac);
 int	data_initialization(t_game *game);
+int put_image(t_game *game, int row, int col, int coord_y);
+char	**fill_map(int fd, char **map, int rows);
+int check_map_geometry(t_game *game);
+int	check_map_surrounded_top(t_game *game);
+int	check_map_surrounded_left_right_walls(t_game *game);
+int	check_map_surrounded_bottom(t_game *game);
+int	check_map_number_of_collectibles(t_game *game);
+int	check_map_duplicated_players(t_game *game);
+int	check_map_duplicated_exits(t_game *game);
+int	test_data_initialization(t_game *test_game, t_game *game);
+int check_right_cell_for_exit(t_game *test_game, int ppy, int ppx);
+int check_left_cell_for_exit(t_game *test_game, int ppy, int ppx);
+int check_down_cell_for_exit(t_game *test_game, int ppy, int ppx);
+int check_up_cell_for_exit(t_game *test_game, int ppy, int ppx);
+int	check_right_cell_for_way(t_game *test_game, int ppy, int ppx);
+int	check_left_cell_for_way(t_game *test_game, int ppy, int ppx);
+int	check_down_cell_for_way(t_game *test_game, int ppy, int ppx);
+int	check_up_cell_for_way(t_game *test_game, int ppy, int ppx);
+int exit_point(t_game *game);
 
 #define X_EVENT_KEY_PRESS		2
 #define X_EVENT_KEY_RELEASE		3
@@ -104,6 +123,8 @@ int	data_initialization(t_game *game);
 
 # define TEST_TARGET	test_game->target_collectibles
 # define TEST_MAP		test_game->map
+# define MAP			game->map
+
 # define GRASS			game.img_grass
 # define WALL			game.img_wall
 # define PLAYER			game.img_player

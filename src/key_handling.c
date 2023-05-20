@@ -6,16 +6,17 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:17:54 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/19 17:18:17 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/20 19:05:09 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* This function is called every time the button is pressed */
 int	deal_key(int key_code, t_game *game)
 {
 	if (key_code == KEY_ESC)
-		exit(0);
+		exit_point(game);
 	else if (key_code == KEY_D)
 	{	
 		game->pres_but_d_count++;
@@ -39,6 +40,7 @@ int	deal_key(int key_code, t_game *game)
 	return (0);
 }
 
+/* This function is called every time the button is released */
 int	release_key(int key_code, t_game *game)
 {
 	game->lock_button = 0;
@@ -50,6 +52,7 @@ int	release_key(int key_code, t_game *game)
 	return (0);
 }
 
+/* This function closes game */
 int	close_game(int key_code, t_game *game)
 {
 	(void)key_code;
@@ -57,26 +60,32 @@ int	close_game(int key_code, t_game *game)
 	exit(0);
 }
 
+/* This function prevents wrong behaviour when two or more buttons */
+/* pressed simultaneously */
 int	prevent_double_key_press(t_game *game, int button_key)
 {
 	if (button_key == KEY_D)
 	{
-		if (game->pres_but_a_count == 0 && game->pres_but_w_count == 0 && game->pres_but_s_count == 0)
+		if (game->pres_but_a_count == 0 && game->pres_but_w_count == 0
+			&& game->pres_but_s_count == 0)
 			return (0);
 	}
 	else if (button_key == KEY_A)
 	{
-		if (game->pres_but_d_count == 0 && game->pres_but_w_count == 0 && game->pres_but_s_count == 0)
+		if (game->pres_but_d_count == 0 && game->pres_but_w_count == 0
+			&& game->pres_but_s_count == 0)
 			return (0);
 	}
 	else if (button_key == KEY_W)
 	{
-		if (game->pres_but_a_count == 0 && game->pres_but_s_count == 0 && game->pres_but_d_count == 0)
+		if (game->pres_but_a_count == 0 && game->pres_but_s_count == 0
+			&& game->pres_but_d_count == 0)
 			return (0);
 	}
 	else if (button_key == KEY_S)
 	{
-		if (game->pres_but_a_count == 0 && game->pres_but_w_count == 0 && game->pres_but_d_count == 0)
+		if (game->pres_but_a_count == 0 && game->pres_but_w_count == 0
+			&& game->pres_but_d_count == 0)
 			return (0);
 	}
 	return (1);
