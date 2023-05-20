@@ -6,12 +6,53 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 12:43:57 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/19 19:39:20 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/20 11:35:03 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* Render function. Reads map and re-draws image */
+// int	main_loop(t_game *game)
+// {
+// 	int	row;
+// 	int	col;
+// 	int	coord_y;
+// 	int	coord_x;
+
+// 	row = 0;
+// 	col = 0;
+// 	Y = 0;
+// 	X = 0;
+// 	while (row != game->rows)
+// 	{
+// 		while (col != game->columns)
+// 		{
+// 			if (game->map[row][col] == '0')
+// 				mlx_put_image_to_window(MLX, WINDOW, game->img_grass, X, Y);
+// 			else if (game->map[row][col] == '1')
+// 				mlx_put_image_to_window(MLX, WINDOW, game->img_wall, X, Y);
+// 			else if (game->map[row][col] == 'P')
+// 			{
+// 				mlx_put_image_to_window(MLX, WINDOW, game->img_player, X, Y);
+// 				PPX = col;
+// 				PPY = row;
+// 			}
+// 			else if (game->map[row][col] == 'C')
+// 				mlx_put_image_to_window(MLX, WINDOW, game->img_collect, X, Y);
+// 			else if (game->map[row][col] == 'E')
+// 				mlx_put_image_to_window(MLX, WINDOW, game->img_exit, X, Y);
+// 			col++;
+// 			X = X + 32;
+// 		}
+// 		col = 0;
+// 		X = 0;
+// 		row++;
+// 		Y = Y + 32;
+// 	}	
+// 	return (0);
+// }
+int put_image(t_game *game, int row, int col, int coord_y);
 /* Render function. Reads map and re-draws image */
 int	main_loop(t_game *game)
 {
@@ -22,34 +63,41 @@ int	main_loop(t_game *game)
 
 	row = 0;
 	col = 0;
-	coord_y = 0;
-	coord_x = 0;
+	Y = 0;
+	X = 0;
 	while (row != game->rows)
 	{
 		while (col != game->columns)
 		{
-			if (game->map[row][col] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_grass, coord_x, coord_y);
-			else if (game->map[row][col] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_wall, coord_x, coord_y);
-			else if (game->map[row][col] == 'P')
-			{
-				mlx_put_image_to_window(game->mlx, game->win, game->img_player, coord_x, coord_y);
-				PPX = col;
-				PPY = row;
-			}
-			else if (game->map[row][col] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_collect, coord_x, coord_y);
-			else if (game->map[row][col] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->img_exit, coord_x, coord_y);
+			put_image(game, row, col, coord_y);
 			col++;
-			coord_x = coord_x + 32;
+			X = X + 32;
 		}
 		col = 0;
-		coord_x = 0;
+		X = 0;
 		row++;
-		coord_y = coord_y + 32;
+		Y = Y + 32;
 	}	
+	return (0);
+}
+/* This function put image depends of a map sign: 0 or 1 or P ...etc.*/
+int put_image(t_game *game, int row, int col, int coord_y)
+{
+	if (game->map[row][col] == '0')
+		mlx_put_image_to_window(MLX, WINDOW, game->img_grass, col * 32, Y);
+	else if (game->map[row][col] == '1')
+		mlx_put_image_to_window(MLX, WINDOW, game->img_wall, col * 32, Y);
+	else if (game->map[row][col] == 'P')
+	{
+		mlx_put_image_to_window(MLX, WINDOW, game->img_player, col * 32, Y);
+		PPX = col;
+		PPY = row;
+	}
+	else if (game->map[row][col] == 'C')
+		mlx_put_image_to_window(MLX, WINDOW, game->img_collect, col * 32, Y);
+	else if (game->map[row][col] == 'E')
+		mlx_put_image_to_window(MLX, WINDOW, game->img_exit, col * 32, Y);
+	
 	return (0);
 }
 

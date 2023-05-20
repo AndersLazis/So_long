@@ -4,8 +4,6 @@
 
 #include<mlx.h>
 
-#define DEFAULT_MAP			"/maps/simple.ber"
-
 #endif
 
 #ifndef GET_NEXT_LINE_H
@@ -61,13 +59,8 @@ typedef struct	s_game
 	int 	pres_but_w_count;
 	int 	pres_but_s_count;
 	int		win_length;
-	int		win_height;
-	
-	
-	
+	int		win_height;	
 }				t_game;
-
-
 
 int	ft_printf(const char *specifier, ...);
 int find_way(t_game *test_game, int ppy, int ppx);
@@ -96,11 +89,6 @@ int player_reached_exit (t_game *game);
 int check_number_of_args(int ac);
 int	data_initialization(t_game *game);
 
-
-
-
-
-
 #define X_EVENT_KEY_PRESS		2
 #define X_EVENT_KEY_RELEASE		3
 #define X_EVENT_KEY_EXIT		17 //Exit program key code
@@ -123,15 +111,15 @@ int	data_initialization(t_game *game);
 # define EXIT			game.img_exit
 
 # define IMG_SIZE		&img_width, &img_height
-# define WINDOW_SIZE		(game.columns * 32), (game.rows * 32)
+# define WINDOW_SIZE	(game.columns * 32), (game.rows * 32)
+# define X				coord_x
+# define Y				coord_y
+# define WINDOW			game->win
+# define MLX			game->mlx
 // # define
 // # define
 // # define
 // # define
-// # define
-// # define
-
-
 
 # define ROWS 0
 # define COLS 0
