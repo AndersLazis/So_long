@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:34:58 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/19 19:35:32 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:25:43 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,18 @@ int	string_len(char *str)
 		i++;
 	}
 	return (i + 1);
+}
+
+int	exit_point(t_game *game)
+{
+	int	rows;
+
+	rows = 0;
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	free(game->mlx);
+	while (rows < game->row - 1)
+		free(game->map[rows++]);
+	free(game->map);
+	exit(0);
 }

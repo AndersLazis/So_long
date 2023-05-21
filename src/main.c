@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 12:43:57 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 16:05:17 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:52:56 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main_loop(t_game *game)
 	row = 0;
 	col = 0;
 	coord_y = 0;
-	while (row != game->rows)
+	while (row != game->row)
 	{
-		while (col != game->columns)
+		while (col != game->col)
 		{
 			put_image(game, row, col, coord_y);
 			col++;
@@ -40,19 +40,24 @@ int	main_loop(t_game *game)
 int	put_image(t_game *game, int row, int col, int coord_y)
 {
 	if (game->map[row][col] == '0')
-		mlx_put_image_to_window(game->mlx, game->win, game->img_grass, col * 32, coord_y);
+		mlx_put_image_to_window(game->mlx, game->win, game->img_grass,
+			col * 32, coord_y);
 	else if (game->map[row][col] == '1')
-		mlx_put_image_to_window(game->mlx, game->win, game->img_wall, col * 32, coord_y);
+		mlx_put_image_to_window(game->mlx, game->win, game->img_wall,
+			col * 32, coord_y);
 	else if (game->map[row][col] == 'P')
 	{
-		mlx_put_image_to_window(game->mlx, game->win, game->img_player, col * 32, coord_y);
+		mlx_put_image_to_window(game->mlx, game->win, game->img_player,
+			col * 32, coord_y);
 		game->ppx = col;
 		game->ppy = row;
 	}
 	else if (game->map[row][col] == 'C')
-		mlx_put_image_to_window(game->mlx, game->win, game->img_collect, col * 32, coord_y);
+		mlx_put_image_to_window(game->mlx, game->win, game->img_collect,
+			col * 32, coord_y);
 	else if (game->map[row][col] == 'E')
-		mlx_put_image_to_window(game->mlx, game->win, game->img_exit, col * 32, coord_y);
+		mlx_put_image_to_window(game->mlx, game->win, game->img_exit,
+			col * 32, coord_y);
 	return (0);
 }
 
@@ -71,7 +76,8 @@ int	main(int ac, char	**av)
 	game.map = create_map(&game, av[1]);
 	check_map(&game, av[1]);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, (game.columns * 32), (game.rows * 32), "play_me!");
+	game.win = mlx_new_window(game.mlx, (game.col * 32),
+			(game.row * 32), "GAME");
 	game.img_grass = mlx_xpm_file_to_image(game.mlx, GRASS, &img_w, &img_h);
 	game.img_wall = mlx_xpm_file_to_image(game.mlx, WALL, &img_w, &img_h);
 	game.img_player = mlx_xpm_file_to_image(game.mlx, PLAYER, &img_w, &img_h);
@@ -109,22 +115,7 @@ int	data_initialization(t_game *game)
 	return (0);
 }
 
-int exit_point(t_game *game)
-{
-	int	rows;
-
-	rows = 0;
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	free(game->mlx);
-	while (rows < game->rows - 1)
-		free(game->map[rows++]);
-	free(game->map);
-	exit(0);
-}
-
 /*добавить:*/
 /*1. разрушение окна*/
-/* Убрать  strlen!!!*/
 /*2. очистка памяти при выходе*/
 /* Юонус?*/

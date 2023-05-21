@@ -132,7 +132,7 @@ int exit_point(t_game *game);
 # define EXIT			game.img_exit
 
 # define IMG_SIZE		&img_w, &img_h
-# define WINDOW_SIZE	(game.columns * 32), (game.rows * 32)
+# define WINDOW_SIZE	(game.col * 32), (game.row * 32)
 # define X				coord_x
 # define Y				coord_y
 # define WINDOW			game->win

@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_game->map.c                                       :+:      :+:    :+:   */
+/*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:37:31 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/20 18:49:55 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:15:19 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 /* This function counts rows in a game->map to find */
 /* out how many memory we need to allocate */
@@ -23,7 +22,7 @@ int	count_map_rows(t_game	*game, char	*av)
 
 	rows = 0;
 	if (!av)
-		ft_printf("Error! Please, speicify the game->map: 'game->maps/game->map_name.ber'\n");
+		ft_printf("Error! Please, speicify the map: map_name.ber'\n");
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 	{
@@ -38,7 +37,7 @@ int	count_map_rows(t_game	*game, char	*av)
 		rows++;
 	}
 	close (fd);
-	game->rows = rows;
+	game->row = rows;
 	return (0);
 }
 
@@ -48,7 +47,7 @@ char	**create_map(t_game *game, char *av)
 	int		fd;
 	char	**map;
 
-	map = malloc((game->rows) * sizeof(char *));
+	map = malloc((game->row) * sizeof(char *));
 	if (!map)
 		exit(0);
 	fd = open(av, O_RDONLY);
@@ -57,7 +56,7 @@ char	**create_map(t_game *game, char *av)
 		ft_printf("Error! game->map hasn't been found!\n");
 		exit(0);
 	}
-	fill_map(fd, map, game->rows);
+	fill_map(fd, map, game->row);
 	close (fd);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:47:17 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 15:14:21 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:07:38 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	check_map_valid_path(t_game *game)
 	x = 0;
 	y = 0;
 	test_data_initialization(&test_game, game);
-	test_game.map = malloc((game->rows) * sizeof(char *));
-	while (y < game->rows)
+	test_game.map = malloc((game->row) * sizeof(char *));
+	while (y < game->row)
 	{	
-		test_game.map[y] = malloc((game->columns + 1) * sizeof(char));
+		test_game.map[y] = malloc((game->col + 1) * sizeof(char));
 		while (game->map[y][x] != '\0')
 		{	
 			test_game.map[y][x] = game->map[y][x];
@@ -45,8 +45,8 @@ int	check_map_valid_path(t_game *game)
 at start of find-way-algorithm */
 int	test_data_initialization(t_game *test_game, t_game *game)
 {
-	test_game->rows = game->rows;
-	test_game->columns = game->columns;
+	test_game->row = game->row;
+	test_game->col = game->col;
 	test_game->ppx = game->ppx;
 	test_game->ppy = game->ppy;
 	test_game->exit_pos_x = game->exit_pos_x;

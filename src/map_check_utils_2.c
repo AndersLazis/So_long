@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:34:46 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 15:56:04 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:20:48 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_map_name(char	*av)
 	right_name[3] = 'r';
 	right_name[4] = '\0';
 	i = 3;
-	j = strlen(av)-1;
+	j = ft_strlen(av)-1;
 	while (i >= 0)
 	{
 		if (right_name[i] != av[j])
@@ -59,9 +59,9 @@ int	check_map_surrounded_left_right_walls(t_game *game)
 
 	x = 0;
 	y = 0;
-	while (y < game->rows - 1)
+	while (y < game->row - 1)
 	{
-		if (game->map[y][0] != '1' || game->map[y][game->columns - 1] != '1')
+		if (game->map[y][0] != '1' || game->map[y][game->col - 1] != '1')
 			return (1);
 		y++;
 	}
@@ -76,10 +76,10 @@ int	check_map_surrounded_bottom(t_game *game)
 
 	x = 0;
 	y = 0;
-	while (game->map[game->rows - 1][x] != '\n'
-		&& game->map[game->rows - 1][x] != '\0')
+	while (game->map[game->row - 1][x] != '\n'
+		&& game->map[game->row - 1][x] != '\0')
 	{
-		if (game->map[game->rows - 1][x] != '1')
+		if (game->map[game->row - 1][x] != '1')
 			return (1);
 		x++;
 	}

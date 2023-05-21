@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:11:51 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 15:57:14 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:07:38 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	check_map_wrong_chars(t_game *game)
 	i = 0;
 	x = 0;
 	y = 0;
-	while (y < game->rows)
+	while (y < game->row)
 	{
 		while (game->map[y][x] != '\0')
 		{

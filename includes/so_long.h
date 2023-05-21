@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:30:32 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 16:02:00 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:25:09 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ size_t		ft_strlen(char *str);
 typedef struct s_game
 {	
 	int		lock_button;
-	int		rows;
-	int		columns;
+	int		row;
+	int		col;
 	void	*img_grass;
 	void	*img_wall;
 	void	*img_collect;

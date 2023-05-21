@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:04:48 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 15:17:32 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:07:38 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_right_cell_for_way(t_game *test_game, int ppy, int ppx)
 		|| test_game->map[ppy][ppx + 1] == 'E')
 	{	
 		test_game->map[ppy][ppx] = '+';
-		if (ppx < (test_game->columns - 2))
+		if (ppx < (test_game->col - 2))
 			find_way(test_game, ppy, ppx + 1);
 	}
 	return (0);
@@ -69,7 +69,7 @@ int	check_down_cell_for_way(t_game *test_game, int ppy, int ppx)
 		|| test_game->map[ppy + 1][ppx] == 'E')
 	{
 		test_game->map[ppy][ppx] = '+';
-		if (ppy < (test_game->rows - 1))
+		if (ppy < (test_game->row - 1))
 			find_way(test_game, ppy + 1, ppx);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:26:55 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 15:56:51 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:20:48 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	check_map_rectangular(t_game *game)
 
 	columns = 0;
 	rows = 0;
-	game->columns = strlen(game->map[0]);
-	while (rows < game->rows)
+	game->col = ft_strlen(game->map[0]);
+	while (rows < game->row)
 	{
 		while (game->map[rows][columns] != '\0'
 		&& game->map[rows][columns] != '\n')
 			columns++;
-		if (columns != (game->columns))
+		if (columns != (game->col))
 			return (1);
 		rows++;
 		columns = 0;
@@ -56,7 +56,7 @@ int	check_map_number_of_collectibles(t_game *game)
 	x = 0;
 	y = 0;
 	collectible = 0;
-	while (y < game->rows)
+	while (y < game->row)
 	{
 		while (game->map[y][x] != '\0')
 		{
@@ -83,7 +83,7 @@ int	check_map_duplicated_players(t_game *game)
 	x = 0;
 	y = 0;
 	player = 0;
-	while (y < game->rows)
+	while (y < game->row)
 	{
 		while (game->map[y][x] != '\0')
 		{
@@ -113,7 +113,7 @@ int	check_map_duplicated_exits(t_game *game)
 	x = 0;
 	y = 0;
 	exit = 0;
-	while (y < game->rows)
+	while (y < game->row)
 	{
 		while (game->map[y][x] != '\0')
 		{
