@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:30:32 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 16:25:09 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 19:26:04 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_game
 	int		pres_but_s_count;
 	int		win_length;
 	int		win_height;	
+	int		img_w;
+	int		img_h;
 }				t_game;
 
 int			ft_printf(const char *specifier, ...);
@@ -91,7 +93,7 @@ int			player_reached_exit(t_game *game);
 int			check_number_of_args(int ac);
 int			data_initialization(t_game *game);
 int			put_image(t_game *game, int row, int col, int coord_y);
-char		**fill_map(int fd, char **map, int rows);
+char		**fill_map(int fd, char **map, int rows, t_game *game);
 int			check_map_geometry(t_game *game);
 int			check_map_surrounded_top(t_game *game);
 int			check_map_surrounded_left_right_walls(t_game *game);

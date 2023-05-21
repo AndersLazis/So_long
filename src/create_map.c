@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:37:31 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 16:15:19 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 18:19:51 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,20 @@ char	**create_map(t_game *game, char *av)
 
 	map = malloc((game->row) * sizeof(char *));
 	if (!map)
-		exit(0);
+		exit_point(game);
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 	{
 		ft_printf("Error! game->map hasn't been found!\n");
-		exit(0);
+		exit_point(game);
 	}
-	fill_map(fd, map, game->row);
+	fill_map(fd, map, game->row, game);
 	close (fd);
 	return (map);
 }
 
 /* This function writes the game->map from the file to allocated memory*/
-char	**fill_map(int fd, char **map, int rows)
+char	**fill_map(int fd, char **map, int rows, t_game *game)
 {
 	int		i;
 	int		j;
@@ -75,7 +75,7 @@ char	**fill_map(int fd, char **map, int rows)
 		next_line = get_next_line(fd);
 		map[i] = malloc((string_len(next_line) + 1) * sizeof(char));
 		if (!map[i])
-			exit(0);
+			exit_point(game);
 		while (next_line[j] != '\n' && next_line[j] != '\0')
 		{
 			map[i][j] = next_line[j];

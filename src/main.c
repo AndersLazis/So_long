@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 12:43:57 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 16:52:56 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 19:26:42 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int	put_image(t_game *game, int row, int col, int coord_y)
 int	main(int ac, char	**av)
 {		
 	t_game	game;
-	int		img_w;
-	int		img_h;
+	game.img_w = 32;
+	game.img_h = 32;
 
-	img_w = 32;
-	img_h = 32;
+	// img_w = 32;
+	// img_h = 32;
 	check_number_of_args(ac);
 	data_initialization(&game);
 	count_map_rows(&game, av[1]);
