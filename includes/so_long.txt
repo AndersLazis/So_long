@@ -43,8 +43,8 @@ typedef struct	s_game
 	void	*img_exit;
 	void	*mlx;
 	void	*win;
-	int		pl_pos_x;
-	int		pl_pos_y;
+	int		ppx;
+	int		ppy;
 	int		exit_pos_x;
 	int		exit_pos_y;
 	int		collectibles;
@@ -83,7 +83,7 @@ int move_down(t_game *game);
 int	deal_key(int key_code, t_game *game);
 int release_key(int key_code, t_game *game);
 int close_game(int key_code, t_game *game);
-int prevent_double_key_press(t_game *game, int button_key);
+int prev_2_key(t_game *game, int button_key);
 int player_reached_collectible (t_game *game);
 int player_reached_exit (t_game *game);
 int check_number_of_args(int ac);
@@ -114,14 +114,14 @@ int exit_point(t_game *game);
 
 #define KEY_ESC			53
 
-# define KEY_W			13
-# define KEY_A			0
-# define KEY_S			1
-# define KEY_D			2
-# define PPY			game->pl_pos_y
-# define PPX			game->pl_pos_x
+# define W			13
+# define A			0
+# define S			1
+# define D			2
+# define PPY			game->ppy
+# define PPX			game->ppx
 
-# define TEST_TARGET	test_game->target_collectibles
+# define TEST_TARGET	test_game->target_items
 # define TEST_MAP		test_game->map
 # define MAP			game->map
 
@@ -131,7 +131,7 @@ int exit_point(t_game *game);
 # define ITEM			game.img_collect
 # define EXIT			game.img_exit
 
-# define IMG_SIZE		&img_width, &img_height
+# define IMG_SIZE		&img_w, &img_h
 # define WINDOW_SIZE	(game.columns * 32), (game.rows * 32)
 # define X				coord_x
 # define Y				coord_y

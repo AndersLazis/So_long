@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:28:55 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 14:20:51 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 15:10:41 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 int	move_right(t_game *game)
 {	
-	if (game->map[game->pl_pos_y][game->pl_pos_x + 1] == '0' && !prevent_double_key_press(game, KEY_D))
+	if (game->map[game->ppy][game->ppx + 1] == '0' && !prev_2_key(game, D))
 	{
-		game->map[game->pl_pos_y][game->pl_pos_x + 1] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
-		if ((game->exit_pos_y == game->pl_pos_y) && (game->exit_pos_x == game->pl_pos_x))
-			game->map[game->pl_pos_y][game->pl_pos_x] = 'E';
+		game->map[game->ppy][game->ppx + 1] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
+		if ((game->exit_pos_y == game->ppy) && (game->exit_pos_x == game->ppx))
+			game->map[game->ppy][game->ppx] = 'E';
 	}
-	else if (game->map[game->pl_pos_y][game->pl_pos_x + 1] == 'C' && !prevent_double_key_press(game, KEY_D))
+	else if (game->map[game->ppy][game->ppx + 1] == 'C' && !prev_2_key(game, D))
 	{
-		game->map[game->pl_pos_y][game->pl_pos_x + 1] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
-		if ((game->exit_pos_y == game->pl_pos_y) && (game->exit_pos_x == game->pl_pos_x))
-			game->map[game->pl_pos_y][game->pl_pos_x] = 'E';
+		game->map[game->ppy][game->ppx + 1] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
+		if ((game->exit_pos_y == game->ppy) && (game->exit_pos_x == game->ppx))
+			game->map[game->ppy][game->ppx] = 'E';
 		player_reached_collectible(game);
 	}
-	else if (game->map[game->pl_pos_y][game->pl_pos_x + 1] == 'E' && !prevent_double_key_press(game, KEY_D))
+	else if (game->map[game->ppy][game->ppx + 1] == 'E' && !prev_2_key(game, D))
 	{
-		game->map[game->pl_pos_y][game->pl_pos_x + 1] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
+		game->map[game->ppy][game->ppx + 1] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
 		player_reached_exit(game);
 	}
 	ft_printf("MOVES: %d\n", ++game->moves);
@@ -41,25 +41,25 @@ int	move_right(t_game *game)
 
 int	move_left(t_game *game)
 {	
-	if (game->map[game->pl_pos_y][game->pl_pos_x - 1] == '0' && !prevent_double_key_press(game, KEY_A))
+	if (game->map[game->ppy][game->ppx - 1] == '0' && !prev_2_key(game, A))
 	{
-		game->map[game->pl_pos_y][game->pl_pos_x - 1] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
-		if ((game->exit_pos_y == game->pl_pos_y) && (game->exit_pos_x == game->pl_pos_x))
-			game->map[game->pl_pos_y][game->pl_pos_x] = 'E';
+		game->map[game->ppy][game->ppx - 1] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
+		if ((game->exit_pos_y == game->ppy) && (game->exit_pos_x == game->ppx))
+			game->map[game->ppy][game->ppx] = 'E';
 	}
-	else if (game->map[game->pl_pos_y][game->pl_pos_x - 1] == 'C' && !prevent_double_key_press(game, KEY_A))
+	else if (game->map[game->ppy][game->ppx - 1] == 'C' && !prev_2_key(game, A))
 	{
-		game->map[game->pl_pos_y][game->pl_pos_x - 1] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
-		if ((game->exit_pos_y == game->pl_pos_y) && (game->exit_pos_x == game->pl_pos_x))
-			game->map[game->pl_pos_y][game->pl_pos_x] = 'E';
+		game->map[game->ppy][game->ppx - 1] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
+		if ((game->exit_pos_y == game->ppy) && (game->exit_pos_x == game->ppx))
+			game->map[game->ppy][game->ppx] = 'E';
 		player_reached_collectible(game);
 	}
-	else if (game->map[game->pl_pos_y][game->pl_pos_x - 1] == 'E' && !prevent_double_key_press(game, KEY_A))
+	else if (game->map[game->ppy][game->ppx - 1] == 'E' && !prev_2_key(game, A))
 	{
-		game->map[game->pl_pos_y][game->pl_pos_x - 1] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
+		game->map[game->ppy][game->ppx - 1] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
 		player_reached_exit(game);
 	}
 	ft_printf("MOVES: %d\n", ++game->moves);
@@ -68,25 +68,25 @@ int	move_left(t_game *game)
 
 int	move_up(t_game *game)
 {	
-	if (game->map[game->pl_pos_y - 1][game->pl_pos_x] == '0' && !prevent_double_key_press(game, KEY_W))
+	if (game->map[game->ppy - 1][game->ppx] == '0' && !prev_2_key(game, W))
 	{
-		game->map[game->pl_pos_y - 1][game->pl_pos_x] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
-		if ((game->exit_pos_y == game->pl_pos_y) && (game->exit_pos_x == game->pl_pos_x))
-			game->map[game->pl_pos_y][game->pl_pos_x] = 'E';
+		game->map[game->ppy - 1][game->ppx] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
+		if ((game->exit_pos_y == game->ppy) && (game->exit_pos_x == game->ppx))
+			game->map[game->ppy][game->ppx] = 'E';
 	}
-	else if (game->map[game->pl_pos_y - 1][game->pl_pos_x] == 'C' && !prevent_double_key_press(game, KEY_W))
+	else if (game->map[game->ppy - 1][game->ppx] == 'C' && !prev_2_key(game, W))
 	{
-		game->map[game->pl_pos_y - 1][game->pl_pos_x] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
-		if ((game->exit_pos_y == game->pl_pos_y) && (game->exit_pos_x == game->pl_pos_x))
-			game->map[game->pl_pos_y][game->pl_pos_x] = 'E';
+		game->map[game->ppy - 1][game->ppx] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
+		if ((game->exit_pos_y == game->ppy) && (game->exit_pos_x == game->ppx))
+			game->map[game->ppy][game->ppx] = 'E';
 		player_reached_collectible(game);
 	}
-	else if (game->map[game->pl_pos_y - 1][game->pl_pos_x] == 'E' && !prevent_double_key_press(game, KEY_W))
+	else if (game->map[game->ppy - 1][game->ppx] == 'E' && !prev_2_key(game, W))
 	{
-		game->map[game->pl_pos_y - 1][game->pl_pos_x] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
+		game->map[game->ppy - 1][game->ppx] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
 		player_reached_exit(game);
 	}
 	ft_printf("MOVES: %d\n", ++game->moves);
@@ -95,27 +95,27 @@ int	move_up(t_game *game)
 
 int	move_down(t_game *game)
 {	
-	if (game->map[game->pl_pos_y + 1][game->pl_pos_x] == '0' && !prevent_double_key_press(game, KEY_S))
+	if (game->map[game->ppy + 1][game->ppx] == '0' && !prev_2_key(game, S))
 	{
-		game->map[game->pl_pos_y + 1][game->pl_pos_x] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
-		if ((game->exit_pos_y == game->pl_pos_y) && (game->exit_pos_x == game->pl_pos_x))
-			game->map[game->pl_pos_y][game->pl_pos_x] = 'E';
+		game->map[game->ppy + 1][game->ppx] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
+		if ((game->exit_pos_y == game->ppy) && (game->exit_pos_x == game->ppx))
+			game->map[game->ppy][game->ppx] = 'E';
 	}
-	else if (game->map[game->pl_pos_y + 1][game->pl_pos_x] == 'C' && !prevent_double_key_press(game, KEY_S))
+	else if (game->map[game->ppy + 1][game->ppx] == 'C' && !prev_2_key(game, S))
 	{
-		game->map[game->pl_pos_y + 1][game->pl_pos_x] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
-		if ((game->exit_pos_y == game->pl_pos_y) && (game->exit_pos_x == game->pl_pos_x))
-			game->map[game->pl_pos_y][game->pl_pos_x] = 'E';
+		game->map[game->ppy + 1][game->ppx] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
+		if ((game->exit_pos_y == game->ppy) && (game->exit_pos_x == game->ppx))
+			game->map[game->ppy][game->ppx] = 'E';
 		player_reached_collectible(game);
 	}
-	else if (game->map[game->pl_pos_y + 1][game->pl_pos_x] == 'E' && !prevent_double_key_press(game, KEY_S))
+	else if (game->map[game->ppy + 1][game->ppx] == 'E' && !prev_2_key(game, S))
 	{
-		game->map[game->pl_pos_y + 1][game->pl_pos_x] = 'P';
-		game->map[game->pl_pos_y][game->pl_pos_x] = '0';
-		if ((game->exit_pos_y == game->pl_pos_y) && (game->exit_pos_x == game->pl_pos_x))
-			game->map[game->pl_pos_y][game->pl_pos_x] = 'E';
+		game->map[game->ppy + 1][game->ppx] = 'P';
+		game->map[game->ppy][game->ppx] = '0';
+		if ((game->exit_pos_y == game->ppy) && (game->exit_pos_x == game->ppx))
+			game->map[game->ppy][game->ppx] = 'E';
 		player_reached_exit(game);
 	}
 	ft_printf("MOVES: %d\n", ++game->moves);

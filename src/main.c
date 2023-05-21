@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 12:43:57 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 15:03:30 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:05:17 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	put_image(t_game *game, int row, int col, int coord_y)
 	else if (game->map[row][col] == 'P')
 	{
 		mlx_put_image_to_window(game->mlx, game->win, game->img_player, col * 32, coord_y);
-		game->pl_pos_x = col;
-		game->pl_pos_y = row;
+		game->ppx = col;
+		game->ppy = row;
 	}
 	else if (game->map[row][col] == 'C')
 		mlx_put_image_to_window(game->mlx, game->win, game->img_collect, col * 32, coord_y);
@@ -60,11 +60,11 @@ int	put_image(t_game *game, int row, int col, int coord_y)
 int	main(int ac, char	**av)
 {		
 	t_game	game;
-	int		img_width;
-	int		img_height;
+	int		img_w;
+	int		img_h;
 
-	img_width = 32;
-	img_height = 32;
+	img_w = 32;
+	img_h = 32;
 	check_number_of_args(ac);
 	data_initialization(&game);
 	count_map_rows(&game, av[1]);
@@ -72,11 +72,11 @@ int	main(int ac, char	**av)
 	check_map(&game, av[1]);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, (game.columns * 32), (game.rows * 32), "play_me!");
-	game.img_grass = mlx_xpm_file_to_image(game.mlx, "images/grass.xpm", &img_width, &img_height);
-	game.img_wall = mlx_xpm_file_to_image(game.mlx, "images/wall.xpm", &img_width, &img_height);
-	game.img_player = mlx_xpm_file_to_image(game.mlx, "images/cat.xpm", &img_width, &img_height);
-	game.img_collect = mlx_xpm_file_to_image(game.mlx, "images/collect.xpm", &img_width, &img_height);
-	game.img_exit = mlx_xpm_file_to_image(game.mlx, "images/wall_n.xpm", &img_width, &img_height);
+	game.img_grass = mlx_xpm_file_to_image(game.mlx, GRASS, &img_w, &img_h);
+	game.img_wall = mlx_xpm_file_to_image(game.mlx, WALL, &img_w, &img_h);
+	game.img_player = mlx_xpm_file_to_image(game.mlx, PLAYER, &img_w, &img_h);
+	game.img_collect = mlx_xpm_file_to_image(game.mlx, ITEM, &img_w, &img_h);
+	game.img_exit = mlx_xpm_file_to_image(game.mlx, EXIT, &img_w, &img_h);
 	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_RELEASE, 0, &release_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close_game, &game);
@@ -103,8 +103,8 @@ int	data_initialization(t_game *game)
 	game->pres_but_d_count = 0;
 	game->pres_but_w_count = 0;
 	game->pres_but_s_count = 0;
-	game->collectibles = 0;
-	game->target_collectibles = 0;
+	game->items = 0;
+	game->target_items = 0;
 	game->moves = 0;
 	return (0);
 }
@@ -117,7 +117,7 @@ int exit_point(t_game *game)
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	free(game->mlx);
-	while (rows< game->rows - 1)
+	while (rows < game->rows - 1)
 		free(game->map[rows++]);
 	free(game->map);
 	exit(0);

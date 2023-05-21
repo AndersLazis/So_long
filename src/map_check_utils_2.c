@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game->map_check_utils_2.c                                :+:      :+:    :+:   */
+/*   map_check_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:34:46 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/20 14:38:55 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 15:56:04 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	check_map_surrounded_bottom(t_game *game)
 
 	x = 0;
 	y = 0;
-	while (game->map[game->rows - 1][x] != '\n' && game->map[game->rows - 1][x] != '\0')
+	while (game->map[game->rows - 1][x] != '\n'
+		&& game->map[game->rows - 1][x] != '\0')
 	{
 		if (game->map[game->rows - 1][x] != '1')
 			return (1);

@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_game->map_valid_path.c                             :+:      :+:    :+:   */
+/*   check_map_valid_path.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:47:17 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 14:02:37 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 15:14:21 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/***********************************************************************/
 /* This function checks if there’s a valid path in the game->map. */
 int	check_map_valid_path(t_game *game)
 {
@@ -36,8 +35,8 @@ int	check_map_valid_path(t_game *game)
 		y++;
 		x = 0;
 	}
-	if ((find_way(&test_game, test_game.pl_pos_y, test_game.pl_pos_x) == 1)
-		&& (find_exit(&test_game, test_game.pl_pos_y, test_game.pl_pos_x) == 1))
+	if ((find_way(&test_game, test_game.ppy, test_game.ppx) == 1)
+		&& (find_exit(&test_game, test_game.ppy, test_game.ppx) == 1))
 		return (1);
 	return (0);
 }
@@ -48,12 +47,12 @@ int	test_data_initialization(t_game *test_game, t_game *game)
 {
 	test_game->rows = game->rows;
 	test_game->columns = game->columns;
-	test_game->pl_pos_x = game->pl_pos_x;
-	test_game->pl_pos_y = game->pl_pos_y;
+	test_game->ppx = game->ppx;
+	test_game->ppy = game->ppy;
 	test_game->exit_pos_x = game->exit_pos_x;
 	test_game->exit_pos_y = game->exit_pos_y;
-	test_game->target_collectibles = game->target_collectibles;
-	test_game->collectibles = 0;
+	test_game->target_items = game->target_items;
+	test_game->items = 0;
 	test_game->exitz = 0;
 	return (0);
 }

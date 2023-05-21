@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:30:32 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 15:03:42 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:02:00 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ typedef struct s_game
 	void	*img_exit;
 	void	*mlx;
 	void	*win;
-	int		pl_pos_x;
-	int		pl_pos_y;
+	int		ppx;
+	int		ppy;
 	int		exit_pos_x;
 	int		exit_pos_y;
-	int		collectibles;
+	int		items;
 	int		players_count;
 	int		exits_count;
 	int		exitz;
-	int		target_collectibles;
+	int		target_items;
 	int		moves;
 	char	**map;
 	int		pres_but_a_count;
@@ -85,7 +85,7 @@ int			move_down(t_game *game);
 int			deal_key(int key_code, t_game *game);
 int			release_key(int key_code, t_game *game);
 int			close_game(int key_code, t_game *game);
-int			prevent_double_key_press(t_game *game, int button_key);
+int			prev_2_key(t_game *game, int button_key);
 int			player_reached_collectible(t_game *game);
 int			player_reached_exit(t_game *game);
 int			check_number_of_args(int ac);
@@ -114,11 +114,16 @@ int			exit_point(t_game *game);
 # define X_EVENT_KEY_RELEASE	3
 # define X_EVENT_KEY_EXIT	17 //Exit program key code
 # define KEY_ESC			53
-# define KEY_W				13
-# define KEY_A				0
-# define KEY_S				1
-# define KEY_D				2
-# define ROWS				0	
-# define COLS				0
+# define W				13
+# define A				0
+# define S				1
+# define D				2
+# define ROWS			0	
+# define COLS			0
+# define EXIT			"images/wall_n.xpm"
+# define GRASS			"images/grass.xpm"
+# define WALL			"images/wall.xpm"
+# define PLAYER			"images/cat.xpm"
+# define ITEM			"images/collect.xpm"
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game->map_check_utils.c                                  :+:      :+:    :+:   */
+/*   map_check_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:26:55 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 14:02:37 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 15:56:51 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ int	check_map_rectangular(t_game *game)
 {	
 	int	columns;
 	int	rows;
-	// printf("game->map[0]::%s\n", game->map[0]);
+
 	columns = 0;
 	rows = 0;
 	game->columns = strlen(game->map[0]);
 	while (rows < game->rows)
 	{
-		while (game->map[rows][columns] != '\0' && game->map[rows][columns] != '\n')
+		while (game->map[rows][columns] != '\0'
+		&& game->map[rows][columns] != '\n')
 			columns++;
 		if (columns != (game->columns))
 			return (1);
@@ -66,7 +67,7 @@ int	check_map_number_of_collectibles(t_game *game)
 		x = 0;
 		y++;
 	}
-	game->target_collectibles = collectible;
+	game->target_items = collectible;
 	if (collectible < 1)
 		return (1);
 	return (0);
@@ -89,8 +90,8 @@ int	check_map_duplicated_players(t_game *game)
 			if (game->map[y][x] == 'P')
 			{
 				player++;
-				game->pl_pos_x = x;
-				game->pl_pos_y = y;
+				game->ppx = x;
+				game->ppy = y;
 			}
 			x++;
 		}
