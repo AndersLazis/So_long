@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check_utils.c                                  :+:      :+:    :+:   */
+/*   game->map_check_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:26:55 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/20 14:38:30 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 14:02:37 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* This function checks whether map is rectangular or not */
+/* This function checks whether game->map is rectangular or not */
 int	check_map_rectangular(t_game *game)
 {	
 	int	columns;
 	int	rows;
-
+	// printf("game->map[0]::%s\n", game->map[0]);
 	columns = 0;
 	rows = 0;
-	game->columns = strlen(MAP[0]);
+	game->columns = strlen(game->map[0]);
 	while (rows < game->rows)
 	{
-		while (MAP[rows][columns] != '\0' && MAP[rows][columns] != '\n')
+		while (game->map[rows][columns] != '\0' && game->map[rows][columns] != '\n')
 			columns++;
 		if (columns != (game->columns))
 			return (1);
@@ -33,7 +33,7 @@ int	check_map_rectangular(t_game *game)
 	return (0);
 }
 
-/* This function checks whether map is surrounded by walls or not */
+/* This function checks whether game->map is surrounded by walls or not */
 int	check_map_surrounded(t_game *game)
 {
 	if (check_map_surrounded_top(game) == 1
@@ -57,9 +57,9 @@ int	check_map_number_of_collectibles(t_game *game)
 	collectible = 0;
 	while (y < game->rows)
 	{
-		while (MAP[y][x] != '\0')
+		while (game->map[y][x] != '\0')
 		{
-			if (MAP[y][x] == 'C')
+			if (game->map[y][x] == 'C')
 				collectible++;
 			x++;
 		}
@@ -84,13 +84,13 @@ int	check_map_duplicated_players(t_game *game)
 	player = 0;
 	while (y < game->rows)
 	{
-		while (MAP[y][x] != '\0')
+		while (game->map[y][x] != '\0')
 		{
-			if (MAP[y][x] == 'P')
+			if (game->map[y][x] == 'P')
 			{
 				player++;
-				PPX = x;
-				PPY = y;
+				game->pl_pos_x = x;
+				game->pl_pos_y = y;
 			}
 			x++;
 		}
@@ -114,9 +114,9 @@ int	check_map_duplicated_exits(t_game *game)
 	exit = 0;
 	while (y < game->rows)
 	{
-		while (MAP[y][x] != '\0')
+		while (game->map[y][x] != '\0')
 		{
-			if (MAP[y][x] == 'E')
+			if (game->map[y][x] == 'E')
 			{
 				exit++;
 				game->exit_pos_x = x;

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   game->map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,19 @@
 
 #include "so_long.h"
 
-/* This function runs various checks for map validity */
+/* This function runs various checks for game->map validity */
 int	check_map(t_game	*game, char	*av)
 {	
 	if (check_map_name(av) == 1)
 	{
-		ft_printf("Error: map file must have '.ber' format\n");
+		ft_printf("Error: game->map file must have '.ber' format\n");
 		exit(0);
 	}
 	if (check_map_geometry(game) == 1)
 		exit(0);
 	if (check_map_wrong_chars(game) == 1)
 	{
-		ft_printf("Error: map has invalid characters.\n");
+		ft_printf("Error: game->map has invalid characters.\n");
 		exit(0);
 	}
 	if (check_map_duplicated_chars(game) == 1)
@@ -34,32 +34,32 @@ int	check_map(t_game	*game, char	*av)
 	}
 	if (check_map_valid_path(game) == 0)
 	{
-		ft_printf("Error. Map hasn't a valid path or exit.\n");
+		ft_printf("Error. game->map hasn't a valid path or exit.\n");
 		exit(0);
 	}
 	return (0);
 }
 
-/* This function run map two map checks:
-1. whether map is rectangular or not
-2. whether map is surrounded by walls or not*/
+/* This function run game->map two game->map checks:
+1. whether game->map is rectangular or not
+2. whether game->map is surrounded by walls or not*/
 
 int	check_map_geometry(t_game *game)
 {
 	if (check_map_rectangular(game) == 1)
 	{
-		ft_printf("Error: map is not rectangular.\n");
+		ft_printf("Error: game->map is not rectangular.\n");
 		return (1);
 	}
 	else if (check_map_surrounded(game) == 1)
 	{
-		ft_printf("Error: map isn't surrounded.\n");
+		ft_printf("Error: game->map isn't surrounded.\n");
 		return (1);
 	}
 	return (0);
 }
 
-/* This function checks whether map has wrong characters or not */
+/* This function checks whether game->map has wrong characters or not */
 int	check_map_wrong_chars(t_game *game)
 {	
 	int	i;
@@ -71,11 +71,11 @@ int	check_map_wrong_chars(t_game *game)
 	y = 0;
 	while (y < game->rows)
 	{
-		while (MAP[y][x] != '\0')
+		while (game->map[y][x] != '\0')
 		{
-			if (MAP[y][x] != '1' && MAP[y][x] != '0' &&
-				MAP[y][x] != 'C' && MAP[y][x] != 'C' &&
-					MAP[y][x] != 'E' && MAP[y][x] != 'P')
+			if (game->map[y][x] != '1' && game->map[y][x] != '0' &&
+				game->map[y][x] != 'C' && game->map[y][x] != 'C' &&
+					game->map[y][x] != 'E' && game->map[y][x] != 'P')
 			{	
 				return (1);
 			}

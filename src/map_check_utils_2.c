@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check_utils_2.c                                :+:      :+:    :+:   */
+/*   game->map_check_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-/* This function checks whether map has .ber format or not*/
+/* This function checks whether game->map has .ber format or not*/
 int	check_map_name(char	*av)
 {	
 	char	right_name[5];
@@ -36,22 +36,22 @@ int	check_map_name(char	*av)
 	return (0);
 }
 
-/* This function checks whether the map is surrounded (top wall) */
+/* This function checks whether the game->map is surrounded (top wall) */
 int	check_map_surrounded_top(t_game *game)
 {
 	int	x;
 
 	x = 0;
-	while (MAP[0][x] != '\n' && MAP[0][x] != '\0')
+	while (game->map[0][x] != '\n' && game->map[0][x] != '\0')
 	{
-		if (MAP[0][x] != '1')
+		if (game->map[0][x] != '1')
 			return (1);
 		x++;
 	}
 	return (0);
 }
 
-/* This function checks whether the map is surrounded (from sides) */
+/* This function checks whether the game->map is surrounded (from sides) */
 int	check_map_surrounded_left_right_walls(t_game *game)
 {
 	int	x;
@@ -61,14 +61,14 @@ int	check_map_surrounded_left_right_walls(t_game *game)
 	y = 0;
 	while (y < game->rows - 1)
 	{
-		if (MAP[y][0] != '1' || MAP[y][game->columns - 1] != '1')
+		if (game->map[y][0] != '1' || game->map[y][game->columns - 1] != '1')
 			return (1);
 		y++;
 	}
 	return (0);
 }
 
-/* This function checks whether the map is surrounded (bottom wall) */
+/* This function checks whether the game->map is surrounded (bottom wall) */
 int	check_map_surrounded_bottom(t_game *game)
 {
 	int	x;
@@ -76,9 +76,9 @@ int	check_map_surrounded_bottom(t_game *game)
 
 	x = 0;
 	y = 0;
-	while (MAP[game->rows - 1][x] != '\n' && MAP[game->rows - 1][x] != '\0')
+	while (game->map[game->rows - 1][x] != '\n' && game->map[game->rows - 1][x] != '\0')
 	{
-		if (MAP[game->rows - 1][x] != '1')
+		if (game->map[game->rows - 1][x] != '1')
 			return (1);
 		x++;
 	}

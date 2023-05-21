@@ -6,13 +6,13 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 12:43:57 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/20 18:12:04 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 15:03:30 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* Render function. Reads map and re-draws image */
+/* Render function. Reads game->map and re-draws image */
 int	main_loop(t_game *game)
 {
 	int	row;
@@ -21,7 +21,7 @@ int	main_loop(t_game *game)
 
 	row = 0;
 	col = 0;
-	Y = 0;
+	coord_y = 0;
 	while (row != game->rows)
 	{
 		while (col != game->columns)
@@ -31,28 +31,28 @@ int	main_loop(t_game *game)
 		}
 		col = 0;
 		row++;
-		Y = Y + 32;
+		coord_y = coord_y + 32;
 	}	
 	return (0);
 }
 
-/* This function put image depends of a map sign: 0 or 1 or P ...etc.*/
+/* This function put image depends of a game->map sign: 0 or 1 or P ...etc.*/
 int	put_image(t_game *game, int row, int col, int coord_y)
 {
-	if (MAP[row][col] == '0')
-		mlx_put_image_to_window(MLX, WINDOW, game->img_grass, col * 32, Y);
-	else if (MAP[row][col] == '1')
-		mlx_put_image_to_window(MLX, WINDOW, game->img_wall, col * 32, Y);
-	else if (MAP[row][col] == 'P')
+	if (game->map[row][col] == '0')
+		mlx_put_image_to_window(game->mlx, game->win, game->img_grass, col * 32, coord_y);
+	else if (game->map[row][col] == '1')
+		mlx_put_image_to_window(game->mlx, game->win, game->img_wall, col * 32, coord_y);
+	else if (game->map[row][col] == 'P')
 	{
-		mlx_put_image_to_window(MLX, WINDOW, game->img_player, col * 32, Y);
-		PPX = col;
-		PPY = row;
+		mlx_put_image_to_window(game->mlx, game->win, game->img_player, col * 32, coord_y);
+		game->pl_pos_x = col;
+		game->pl_pos_y = row;
 	}
-	else if (MAP[row][col] == 'C')
-		mlx_put_image_to_window(MLX, WINDOW, game->img_collect, col * 32, Y);
-	else if (MAP[row][col] == 'E')
-		mlx_put_image_to_window(MLX, WINDOW, game->img_exit, col * 32, Y);
+	else if (game->map[row][col] == 'C')
+		mlx_put_image_to_window(game->mlx, game->win, game->img_collect, col * 32, coord_y);
+	else if (game->map[row][col] == 'E')
+		mlx_put_image_to_window(game->mlx, game->win, game->img_exit, col * 32, coord_y);
 	return (0);
 }
 
@@ -71,12 +71,12 @@ int	main(int ac, char	**av)
 	game.map = create_map(&game, av[1]);
 	check_map(&game, av[1]);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, WINDOW_SIZE, "play_me!");
-	GRASS = mlx_xpm_file_to_image(game.mlx, "images/grass.xpm", IMG_SIZE);
-	WALL = mlx_xpm_file_to_image(game.mlx, "images/wall.xpm", IMG_SIZE);
-	PLAYER = mlx_xpm_file_to_image(game.mlx, "images/cat.xpm", IMG_SIZE);
-	ITEM = mlx_xpm_file_to_image(game.mlx, "images/collect.xpm", IMG_SIZE);
-	EXIT = mlx_xpm_file_to_image(game.mlx, "images/wall_n.xpm", IMG_SIZE);
+	game.win = mlx_new_window(game.mlx, (game.columns * 32), (game.rows * 32), "play_me!");
+	game.img_grass = mlx_xpm_file_to_image(game.mlx, "images/grass.xpm", &img_width, &img_height);
+	game.img_wall = mlx_xpm_file_to_image(game.mlx, "images/wall.xpm", &img_width, &img_height);
+	game.img_player = mlx_xpm_file_to_image(game.mlx, "images/cat.xpm", &img_width, &img_height);
+	game.img_collect = mlx_xpm_file_to_image(game.mlx, "images/collect.xpm", &img_width, &img_height);
+	game.img_exit = mlx_xpm_file_to_image(game.mlx, "images/wall_n.xpm", &img_width, &img_height);
 	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_RELEASE, 0, &release_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close_game, &game);
@@ -90,7 +90,7 @@ int	check_number_of_args(int ac)
 {
 	if (ac != 2)
 	{
-		ft_printf("Error! Please, specify the map path\n");
+		ft_printf("Error! Please, specify the game->map path\n");
 		exit(0);
 	}	
 	return (0);
@@ -125,5 +125,6 @@ int exit_point(t_game *game)
 
 /*добавить:*/
 /*1. разрушение окна*/
+/* Убрать  strlen!!!*/
 /*2. очистка памяти при выходе*/
 /* Юонус?*/

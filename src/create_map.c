@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_map.c                                       :+:      :+:    :+:   */
+/*   create_game->map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "so_long.h"
 
 
-/* This function counts rows in a map to find */
+/* This function counts rows in a game->map to find */
 /* out how many memory we need to allocate */
 int	count_map_rows(t_game	*game, char	*av)
 {
@@ -23,11 +23,11 @@ int	count_map_rows(t_game	*game, char	*av)
 
 	rows = 0;
 	if (!av)
-		ft_printf("Error! Please, speicify the map: 'maps/map_name.ber'\n");
+		ft_printf("Error! Please, speicify the game->map: 'game->maps/game->map_name.ber'\n");
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error! Map hasn't been found!\n");
+		ft_printf("Error! game->map hasn't been found!\n");
 		exit(0);
 	}
 	while (1)
@@ -42,7 +42,7 @@ int	count_map_rows(t_game	*game, char	*av)
 	return (0);
 }
 
-/* Allocates map in memory as strings connected by string of pointers */
+/* Allocates game->map in memory as strings connected by string of pointers */
 char	**create_map(t_game *game, char *av)
 {
 	int		fd;
@@ -54,7 +54,7 @@ char	**create_map(t_game *game, char *av)
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error! Map hasn't been found!\n");
+		ft_printf("Error! game->map hasn't been found!\n");
 		exit(0);
 	}
 	fill_map(fd, map, game->rows);
@@ -62,7 +62,7 @@ char	**create_map(t_game *game, char *av)
 	return (map);
 }
 
-/* This function writes the map from the file to allocated memory*/
+/* This function writes the game->map from the file to allocated memory*/
 char	**fill_map(int fd, char **map, int rows)
 {
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 17:59:47 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/19 09:32:23 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 13:15:48 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,6 @@ int	ft_printf(const char *specifier, ...)
 // printf("\n");
 // printf("%pp%p%p", (void *)LONG_MAX + 423856, (void *)0, (void *)INT_MAX);
 // printf("\n");
-
-
 // ft_printf("Hello world");
 // printf("\n");
 // printf(" %s ", "-");

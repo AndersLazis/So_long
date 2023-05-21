@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_way_finder.c                                   :+:      :+:    :+:   */
+/*   game->map_way_finder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:04:48 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/20 17:49:24 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 14:20:19 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 /* This function checks if all aollectibles are reacheable or not */
 int	find_way(t_game	*test_game, int ppy, int ppx)
 {	
-	if ((TEST_TARGET) == (test_game->collectibles))
+	if ((test_game->target_collectibles) == (test_game->collectibles))
 		return (1);
-	if (TEST_MAP[ppy][ppx] == 'C')
+	if (test_game->map[ppy][ppx] == 'C')
 	{
-		TEST_MAP[ppy][ppx] = '0';
+		test_game->map[ppy][ppx] = '0';
 		test_game->collectibles++;
 	}
-	if ((TEST_TARGET == test_game->collectibles) && (TEST_MAP[ppy][ppx] == '+'))
+	if ((test_game->target_collectibles == test_game->collectibles) && (test_game->map[ppy][ppx] == '+'))
 		return (0);
 	check_right_cell_for_way(test_game, ppy, ppx);
 	check_left_cell_for_way(test_game, ppy, ppx);
 	check_down_cell_for_way(test_game, ppy, ppx);
 	check_up_cell_for_way(test_game, ppy, ppx);
-	if ((TEST_TARGET) == (test_game->collectibles))
+	if ((test_game->target_collectibles) == (test_game->collectibles))
 		return (1);
 	return (0);
 }
@@ -37,10 +37,10 @@ int	find_way(t_game	*test_game, int ppy, int ppx)
 /* These functions checks if it's possible to move to next cell */
 int	check_right_cell_for_way(t_game *test_game, int ppy, int ppx)
 {
-	if (TEST_MAP[ppy][ppx + 1] == '0' || TEST_MAP[ppy][ppx + 1] == 'C'
-	|| TEST_MAP[ppy][ppx + 1] == 'E')
+	if (test_game->map[ppy][ppx + 1] == '0' || test_game->map[ppy][ppx + 1] == 'C'
+	|| test_game->map[ppy][ppx + 1] == 'E')
 	{	
-		TEST_MAP[ppy][ppx] = '+';
+		test_game->map[ppy][ppx] = '+';
 		if (ppx < (test_game->columns - 2))
 			find_way(test_game, ppy, ppx + 1);
 	}
@@ -49,10 +49,10 @@ int	check_right_cell_for_way(t_game *test_game, int ppy, int ppx)
 
 int	check_left_cell_for_way(t_game *test_game, int ppy, int ppx)
 {
-	if (TEST_MAP[ppy][ppx - 1] == '0' || TEST_MAP[ppy][ppx - 1] == 'C'
-	|| TEST_MAP[ppy][ppx - 1] == 'E')
+	if (test_game->map[ppy][ppx - 1] == '0' || test_game->map[ppy][ppx - 1] == 'C'
+	|| test_game->map[ppy][ppx - 1] == 'E')
 	{
-		TEST_MAP[ppy][ppx] = '+';
+		test_game->map[ppy][ppx] = '+';
 		if (ppx > 1)
 			find_way(test_game, ppy, ppx - 1);
 	}
@@ -61,10 +61,10 @@ int	check_left_cell_for_way(t_game *test_game, int ppy, int ppx)
 
 int	check_down_cell_for_way(t_game *test_game, int ppy, int ppx)
 {
-	if (TEST_MAP[ppy + 1][ppx] == '0' || TEST_MAP[ppy + 1][ppx] == 'C'
-	|| TEST_MAP[ppy + 1][ppx] == 'E')
+	if (test_game->map[ppy + 1][ppx] == '0' || test_game->map[ppy + 1][ppx] == 'C'
+	|| test_game->map[ppy + 1][ppx] == 'E')
 	{
-		TEST_MAP[ppy][ppx] = '+';
+		test_game->map[ppy][ppx] = '+';
 		if (ppy < (test_game->rows - 1))
 			find_way(test_game, ppy + 1, ppx);
 	}
@@ -73,10 +73,10 @@ int	check_down_cell_for_way(t_game *test_game, int ppy, int ppx)
 
 int	check_up_cell_for_way(t_game *test_game, int ppy, int ppx)
 {
-	if (TEST_MAP[ppy - 1][ppx] == '0' || TEST_MAP[ppy - 1][ppx] == 'C'
-	|| TEST_MAP[ppy - 1][ppx] == 'E')
+	if (test_game->map[ppy - 1][ppx] == '0' || test_game->map[ppy - 1][ppx] == 'C'
+	|| test_game->map[ppy - 1][ppx] == 'E')
 	{
-		TEST_MAP[ppy][ppx] = '+';
+		test_game->map[ppy][ppx] = '+';
 		if (ppy > 1)
 			find_way(test_game, ppy - 1, ppx);
 	}
