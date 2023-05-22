@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:30:32 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 19:26:04 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/21 19:28:11 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ typedef struct s_game
 	int		pres_but_s_count;
 	int		win_length;
 	int		win_height;	
-	int		img_w;
-	int		img_h;
 }				t_game;
 
 int			ft_printf(const char *specifier, ...);
