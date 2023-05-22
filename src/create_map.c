@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:37:31 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 18:19:51 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:59:29 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ char	**create_map(t_game *game, char *av)
 
 	map = malloc((game->row) * sizeof(char *));
 	if (!map)
-		exit_point(game);
+		exit_point(game, NULL);
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 	{
 		ft_printf("Error! game->map hasn't been found!\n");
-		exit_point(game);
+		exit_point(game, NULL);
 	}
 	fill_map(fd, map, game->row, game);
 	close (fd);
@@ -75,7 +75,7 @@ char	**fill_map(int fd, char **map, int rows, t_game *game)
 		next_line = get_next_line(fd);
 		map[i] = malloc((string_len(next_line) + 1) * sizeof(char));
 		if (!map[i])
-			exit_point(game);
+			exit_point(game, NULL);
 		while (next_line[j] != '\n' && next_line[j] != '\0')
 		{
 			map[i][j] = next_line[j];

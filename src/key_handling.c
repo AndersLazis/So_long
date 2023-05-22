@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:17:54 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 15:10:39 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/22 19:21:09 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	deal_key(int key_code, t_game *game)
 {
 	if (key_code == KEY_ESC)
-		exit_point(game);
+		exit_point(game, NULL);
 	else if (key_code == D)
 	{	
 		game->pres_but_d_count++;
@@ -56,7 +56,9 @@ int	release_key(int key_code, t_game *game)
 int	close_game(int key_code, t_game *game)
 {
 	(void)key_code;
-	(void)game;
+	 (void)game;
+	//exit_point(game, NULL);
+	// return (0);
 	exit(0);
 }
 

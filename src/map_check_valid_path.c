@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_valid_path.c                             :+:      :+:    :+:   */
+/*   map_check_valid_path.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:47:17 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 16:07:38 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/22 18:50:39 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ int	check_map_valid_path(t_game *game)
 	}
 	if ((find_way(&test_game, test_game.ppy, test_game.ppx) == 1)
 		&& (find_exit(&test_game, test_game.ppy, test_game.ppx) == 1))
-		return (1);
+		{
+			free_test_game(&test_game);
+			return (1);
+		}
+	ft_printf("Error. game->map hasn't a valid path or reacheable exit.\n");
+	exit_point(game, &test_game);
 	return (0);
 }
 

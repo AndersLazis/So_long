@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:11:51 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 16:07:38 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/22 17:01:44 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_map(t_game	*game, char	*av)
 	if (check_map_valid_path(game) == 0)
 	{
 		ft_printf("Error. game->map hasn't a valid path or exit.\n");
-		exit(0);
+		exit_point(game, NULL);
 	}
 	return (0);
 }

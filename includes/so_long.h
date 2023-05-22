@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:30:32 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 19:28:11 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/22 19:17:25 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ int			check_right_cell_for_way(t_game *test_game, int ppy, int ppx);
 int			check_left_cell_for_way(t_game *test_game, int ppy, int ppx);
 int			check_down_cell_for_way(t_game *test_game, int ppy, int ppx);
 int			check_up_cell_for_way(t_game *test_game, int ppy, int ppx);
-int			exit_point(t_game *game);
+int			exit_point(t_game *game, t_game *test_game);
+int			free_test_game(t_game *test_game);
 
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_RELEASE	3

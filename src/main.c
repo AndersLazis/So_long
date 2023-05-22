@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 12:43:57 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 19:30:11 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/22 19:23:04 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ int	main_loop(t_game *game)
 int	put_image(t_game *game, int row, int col, int coord_y)
 {
 	if (game->map[row][col] == '0')
-		mlx_put_image_to_window(game->mlx, game->win, game->img_grass,
-			col * 32, coord_y);
+		{
+			if(!mlx_put_image_to_window(game->mlx, game->win, game->img_grass,
+			col * 32, coord_y))
+				exit(0);
+		}
 	else if (game->map[row][col] == '1')
 		mlx_put_image_to_window(game->mlx, game->win, game->img_wall,
 			col * 32, coord_y);
@@ -60,7 +63,7 @@ int	put_image(t_game *game, int row, int col, int coord_y)
 			col * 32, coord_y);
 	return (0);
 }
-
+int	create_window(t_game *game);
 /* Main function */
 int	main(int ac, char	**av)
 {		
@@ -75,9 +78,7 @@ int	main(int ac, char	**av)
 	count_map_rows(&game, av[1]);
 	game.map = create_map(&game, av[1]);
 	check_map(&game, av[1]);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, (game.col * 32),
-			(game.row * 32), "GAME");
+	create_window(&game);
 	game.img_grass = mlx_xpm_file_to_image(game.mlx, GRASS, &img_w, &img_h);
 	game.img_wall = mlx_xpm_file_to_image(game.mlx, WALL, &img_w, &img_h);
 	game.img_player = mlx_xpm_file_to_image(game.mlx, PLAYER, &img_w, &img_h);
@@ -86,6 +87,7 @@ int	main(int ac, char	**av)
 	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_RELEASE, 0, &release_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close_game, &game);
+	// mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &exit_point(&game), &game);
 	mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
@@ -112,8 +114,23 @@ int	data_initialization(t_game *game)
 	game->items = 0;
 	game->target_items = 0;
 	game->moves = 0;
+	game->mlx = NULL;
 	return (0);
 }
+
+int	create_window(t_game *game)
+{
+	game->mlx = mlx_init();
+	if(!game->mlx)
+		exit_point(game, NULL);
+	game->win = mlx_new_window(game->mlx, (game->col * 32),
+			(game->row * 32), "GAME");
+	if(!game->win)
+		exit_point(game, NULL);	
+	return (0);
+}
+
+
 
 /*добавить:*/
 /*1. разрушение окна*/
