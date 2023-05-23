@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:30:32 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/23 16:18:52 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 19:06:23 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,10 @@ int			create_test_map(t_game *game, t_game *test_game);
 # define D				2
 # define ROWS			0	
 # define COLS			0
-# define EXIT			"images/wall_n.xpm"
+# define EXIT			"images/exit.xpm"
 # define GRASS			"images/grass.xpm"
 # define WALL			"images/wall.xpm"
-# define PLAYER			"images/cat.xpm"
-# define ITEM			"images/collect.xpm"
+# define PLAYER			"images/player.xpm"
+# define ITEM			"images/item.xpm"
 
 #endif

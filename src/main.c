@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 12:43:57 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/23 15:46:53 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 19:21:13 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main_loop(t_game *game)
 		}
 		col = 0;
 		row++;
-		coord_y = coord_y + 32;
+		coord_y = coord_y + 50;
 	}	
 	return (0);
 }
