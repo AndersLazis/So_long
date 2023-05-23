@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:37:31 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/23 14:00:06 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:28:55 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	count_map_rows(t_game	*game, char	*av)
 	}
 	close (fd);
 	game->row = rows;
-	
 	return (0);
 }
 
@@ -90,7 +89,5 @@ char	**fill_map(int fd, char **map, int rows, t_game *game)
 		if (i == rows)
 			break ;
 	}
-	
-	// free(next_line);
 	return (map);
 }

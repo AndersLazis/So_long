@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:00:04 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/23 15:25:56 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:34:09 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ int	player_reached_exit(t_game *game)
 		ft_printf("YOU WIN!");
 		exit_point(game, NULL);
 	}
-	//exit(0);
-	 return (0);
+	return (0);
 }

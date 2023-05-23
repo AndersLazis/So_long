@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:17:54 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/23 11:22:19 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:34:32 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ int	release_key(int key_code, t_game *game)
 int	close_game(int key_code, t_game *game)
 {
 	(void)key_code;
-	 (void)game;
-	//exit_point(game, NULL);
-	// return (0);
+	(void)game;
 	exit(0);
 }
 
