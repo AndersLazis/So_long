@@ -6,11 +6,11 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 12:43:57 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/22 19:23:04 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:10:46 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 /* Render function. Reads game->map and re-draws image */
 int	main_loop(t_game *game)
@@ -63,27 +63,25 @@ int	put_image(t_game *game, int row, int col, int coord_y)
 			col * 32, coord_y);
 	return (0);
 }
+
 int	create_window(t_game *game);
+int load_xpm_image (t_game *game);
+
+
 /* Main function */
 int	main(int ac, char	**av)
 {		
 	t_game	game;
-	int		img_w;
-	int		img_h;
 
-	img_w = 32;
-	img_h = 32;
 	check_number_of_args(ac);
 	data_initialization(&game);
 	count_map_rows(&game, av[1]);
 	game.map = create_map(&game, av[1]);
 	check_map(&game, av[1]);
 	create_window(&game);
-	game.img_grass = mlx_xpm_file_to_image(game.mlx, GRASS, &img_w, &img_h);
-	game.img_wall = mlx_xpm_file_to_image(game.mlx, WALL, &img_w, &img_h);
-	game.img_player = mlx_xpm_file_to_image(game.mlx, PLAYER, &img_w, &img_h);
-	game.img_collect = mlx_xpm_file_to_image(game.mlx, ITEM, &img_w, &img_h);
-	game.img_exit = mlx_xpm_file_to_image(game.mlx, EXIT, &img_w, &img_h);
+
+	load_xpm_image(&game);
+
 	mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &deal_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_RELEASE, 0, &release_key, &game);
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close_game, &game);
@@ -129,6 +127,27 @@ int	create_window(t_game *game)
 		exit_point(game, NULL);	
 	return (0);
 }
+
+int load_xpm_image (t_game *game)
+{
+	int		img_w;
+	int		img_h;
+
+	img_w = 32;
+	img_h = 32;
+
+	game->img_grass = mlx_xpm_file_to_image(game->mlx, GRASS, &img_w, &img_h);
+	if(!game->img_grass)
+		exit_point(game, NULL);
+	game->img_wall = mlx_xpm_file_to_image(game->mlx, WALL, &img_w, &img_h);
+	game->img_player = mlx_xpm_file_to_image(game->mlx, PLAYER, &img_w, &img_h);
+	game->img_collect = mlx_xpm_file_to_image(game->mlx, ITEM, &img_w, &img_h);
+	game->img_exit = mlx_xpm_file_to_image(game->mlx, EXIT, &img_w, &img_h);
+
+	return (0);
+
+}
+
 
 
 

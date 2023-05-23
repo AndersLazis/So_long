@@ -6,11 +6,11 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:47:17 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/22 18:50:39 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 11:29:00 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 /* This function checks if there’s a valid path in the game->map. */
 int	check_map_valid_path(t_game *game)

@@ -6,11 +6,11 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:00:04 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/22 18:25:57 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:20:50 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 /* Prints collected items and target */
 int	player_reached_collectible(t_game *game)
@@ -28,5 +28,5 @@ int	player_reached_exit(t_game *game)
 		ft_printf("YOU WIN!");
 		exit_point(game, NULL);
 	}
-	return (0);
+	exit(0);
 }

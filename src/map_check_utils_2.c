@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:34:46 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/21 16:20:48 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 13:04:30 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,16 @@ int	check_map_surrounded_bottom(t_game *game)
 		x++;
 	}
 	return (0);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }

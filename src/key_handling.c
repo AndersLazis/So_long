@@ -6,11 +6,11 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:17:54 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/22 19:21:09 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 11:22:19 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 /* This function is called every time the button is pressed */
 int	deal_key(int key_code, t_game *game)

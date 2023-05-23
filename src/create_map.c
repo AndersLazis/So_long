@@ -6,11 +6,11 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:37:31 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/22 16:59:29 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:00:06 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 /* This function counts rows in a game->map to find */
 /* out how many memory we need to allocate */
@@ -34,10 +34,12 @@ int	count_map_rows(t_game	*game, char	*av)
 		next_line = get_next_line(fd);
 		if (!next_line)
 			break ;
+		free(next_line);
 		rows++;
 	}
 	close (fd);
 	game->row = rows;
+	
 	return (0);
 }
 
@@ -84,8 +86,11 @@ char	**fill_map(int fd, char **map, int rows, t_game *game)
 		map[i][j] = '\0';
 		i++;
 		j = 0;
+		free(next_line);
 		if (i == rows)
 			break ;
 	}
+	
+	// free(next_line);
 	return (map);
 }

@@ -6,11 +6,11 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:34:58 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/22 18:28:25 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:32:23 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 /* Calculates length of string till \n sign */
 int	string_len(char *str)
@@ -39,18 +39,26 @@ int	exit_point(t_game *game, t_game *test_game)
 	mlx_destroy_image(game->mlx, game->img_player);
 	mlx_destroy_image(game->mlx, game->img_collect);
 	mlx_destroy_image(game->mlx, game->img_exit);
-	free(game->mlx);
+	//free(game->mlx);
 	}
-	while (rows < game->row - 1)
-		free(game->map[rows++]);
-	free(game->map);
-	if(test_game)
-	{
-		while (rows < test_game->row - 1)
-		free(test_game->map[rows++]);
-		free(test_game->map);
-	}
-	exit(0);
+// 	while (game->row)//
+// 		{
+// 			free(game->map[rows]);
+// 			rows++;
+// 		}
+// 	free(game->map);
+// 	if(test_game)
+// 	{
+	
+// 		/* while (rows < test_game->row - 1)
+// 			free(test_game->map[rows][test_game->col++]); */
+// 		while (rows < test_game->row - 1)
+// 			free(test_game->map[rows++]);
+// 		free(test_game->map);
+// 	}
+	(void)game;
+	(void)test_game;
+ 	exit(0);
 }
 
 int	free_test_game(t_game *test_game)
@@ -60,10 +68,16 @@ int	free_test_game(t_game *test_game)
 	rows = 0;
 	if(test_game)
 	{
-		while (rows < test_game->row - 1)
-		free(test_game->map[rows++]);
+		while (rows < test_game->row)
+		{	
+			ft_printf("ROWWS:%d\n", rows);
+			free(test_game->map[rows]);
+			rows++;
+		}
+		
 		free(test_game->map);
 	}
+		// free(test_game->map[rows++]);	
 	return (0);
 }
 

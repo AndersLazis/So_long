@@ -5,28 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 22:13:00 by aputiev           #+#    #+#             */
-/*   Updated: 2023/01/10 21:18:50 by aputiev          ###   ########.fr       */
+/*   Created: 2023/01/08 09:12:13 by aputiev           #+#    #+#             */
+/*   Updated: 2023/05/23 13:32:04 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
-# include <stddef.h>
-# include <stdio.h>
+# include <stdlib.h>
+char	*get_next_line(int fd);
+void	free_and_reset(void *var);
+ssize_t	read_line(char **holder, char **buffer, char **final_line, int fd);
+char	*split_line(char **holder);
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 69
-# endif
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strdup(const char *str);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
-char		*get_next_line(int fd);
-char		*ft_strchr(const char *s, int c);
-char		*ft_strjoin(char *s1, char *s2);
-int			ft_find_end(char *str);
-size_t		ft_strlen(char *str);
-
+#define BUFFER_SIZE 42
 #endif
