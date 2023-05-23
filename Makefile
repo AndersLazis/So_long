@@ -1,6 +1,6 @@
 NAME		= so_long
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 RM			= /bin/rm -f
 
 GNL_DIR		= get_next_line
