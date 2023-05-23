@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:11:51 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/22 17:01:44 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:33:37 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	check_map(t_game	*game, char	*av)
 {	
 	if (check_map_name(av) == 1)
 	{
-		ft_printf("Error: game->map file must have '.ber' format\n");
+		ft_printf("Error: Map file must have '.ber' format\n");
 		exit(0);
 	}
 	if (check_map_geometry(game) == 1)
 		exit(0);
 	if (check_map_wrong_chars(game) == 1)
 	{
-		ft_printf("Error: game->map has invalid characters.\n");
+		ft_printf("Error: Map has invalid characters.\n");
 		exit(0);
 	}
 	if (check_map_duplicated_chars(game) == 1)
@@ -34,7 +34,7 @@ int	check_map(t_game	*game, char	*av)
 	}
 	if (check_map_valid_path(game) == 0)
 	{
-		ft_printf("Error. game->map hasn't a valid path or exit.\n");
+		ft_printf("Error. Map hasn't a valid path or exit.\n");
 		exit_point(game, NULL);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:37:31 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/23 15:28:55 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:31:38 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ char	**create_map(t_game *game, char *av)
 {
 	int		fd;
 	char	**map;
-
+	if (game->row < 3)
+	{
+		ft_printf("Error. Map is invalid.\n");
+		exit_point(game, NULL);
+	}
 	map = malloc((game->row) * sizeof(char *));
 	if (!map)
 		exit_point(game, NULL);

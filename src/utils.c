@@ -6,7 +6,7 @@
 /*   By: aputiev <aputiev@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:34:58 by aputiev           #+#    #+#             */
-/*   Updated: 2023/05/23 15:44:46 by aputiev          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:35:56 by aputiev          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	free_test_game(t_game *test_game)
 	{
 		while (rows < test_game->row)
 		{	
-			ft_printf("ROWWS:%d\n", rows);
 			free(test_game->map[rows]);
 			rows++;
 		}
