@@ -77,5 +77,4 @@ No map, missing argv, multiple argv, invalid extension, map with an empty line, 
 missing W parameter, missing C parameter, missing E parameter, missing P parameter, extra P parameter
 
 ---
-### Useful Resources for the Minishell Project
 
